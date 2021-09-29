@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/utilities";
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "width": map-merge(
+      map-get($utilities, "width"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "width"), "values"),
+          (60: 60%),
+        ),
+      ),
+    ),
+  )
+);
+
+$primary: #204080;
+$theme-colors: (
+    "primary": $primary,
+    "light": #fff,
+    "secondary": #484848,
+);
+
+$body-color: #484848;
+$text-color: #484848;
+$font-family-base: 'Roboto',sans-serif;
+$font-weight-base: 700;
+$link-color: #000;
+
+button {
+    &.btn-primary{
+        border-width: 0;
+        width: 138px;
+        height: 46px;
+        border-radius: 8px;
+        line-height: 21px;
+        color: #FFFFFF;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        margin-left: 16px;
+        padding:0;
+    
+        &:hover {
+            background: #4F75C2;   
+        }
+    }
+
+    &.btn-outline-secondary {
+        &.active {
+            border-color: $primary;
+            background: $primary;
+        }
+    }
+
+    &.btn-pagination {
+        margin-left: 5px; 
+        margin-right: 5px;
+    
+        &:hover {
+            background: #4F75C2;
+            border-color: #4F75C2;
+        }
+    }
+
+    &.dropdown-item{
+        color: #000;
+    
+        &.active {
+            background: #C4C4C4;
+            color: $white;
+        }
+    
+        &:hover {
+            background: #C4C4C4;
+            color: $white;
+        }
+    }
+}
+
+table.table-bordered {
+    tbody {
+        tr {
+            border-bottom: 1px solid #585858;
+            border-top-width: 0px;
+            font-size: 18px;
+            color: $text-color;
+
+            #name {
+                color: #686868;
+                font-size: 12px;
+            }
+
+            &:hover {
+                color: $text-color;
+                background-color: #C4C4C4;
+                #name {
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+input.form-control {
+    background: #FFFFFF;
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius: 8px;
+    height: 46px;
+
+    &:hover {
+        background: rgba(100, 100, 100, 0.08);
+        border: 2px solid rgba(0, 0, 0, 0.6);
+    }
+
+    &:focus {
+        box-shadow: 0 0 5px $primary;
+        border: 2px solid #000000;
+    }
+}
+
+#search-bar {
+    margin-left: 35px;
+}
+
+#res-table {
+    margin-left: 184px;
+}
+
+#redirect-link {
+    color: #000;
+    text-decoration: none;
+}
+
+#table-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 8px;
+    border: 1px solid #484848;
+    border-radius: 4px;
+    padding: 30px;
+}
+
+@import "node_modules/bootstrap/scss/bootstrap";
