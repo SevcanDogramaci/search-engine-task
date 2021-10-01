@@ -25,7 +25,7 @@ $theme-colors: (
     "secondary": #484848,
 );
 
-$body-color: #484848;
+$body-color: #686868;
 $text-color: #484848;
 $font-family-base: 'Roboto',sans-serif;
 $font-weight-base: 700;
@@ -101,6 +101,19 @@ table.table-bordered {
                 }
             }
         }
+        td {
+            border-width: 0px;
+        }
+    }
+}
+
+div.invalid-feedback {
+    color: rgba(255, 0, 0, 0.5);
+}
+
+label.form-label {
+    &.invalid {
+        color: rgba(255, 0, 0, 0.7); 
     }
 }
 
@@ -111,6 +124,10 @@ input.form-control {
     border-radius: 8px;
     height: 46px;
 
+    &::placeholder {
+        color: rgba(100, 100, 100, 0.5);
+    }
+
     &:hover {
         background: rgba(100, 100, 100, 0.08);
         border: 2px solid rgba(0, 0, 0, 0.6);
@@ -120,6 +137,36 @@ input.form-control {
         box-shadow: 0 0 5px $primary;
         border: 2px solid #000000;
     }
+
+    &.is-invalid {
+        border: 2px solid #FF0000;
+
+        &::placeholder {
+            color: rgba(255, 0, 0, 0.5);
+        }
+    }
+}
+
+#app-name {
+    font-size: 14px;
+    margin-left: 20%;
+    margin-top: 1%;
+}
+
+.error-message-replacer {
+    margin-top: 0.25rem;
+    font-size: 0.875em;
+    margin-bottom: 0px;
+    opacity: 0;
+    height: $line-height-base;
+}
+
+.error-message-replacer {
+    margin-top: 0.25rem;
+    font-size: 0.875em;
+    margin-bottom: 0px;
+    opacity: 0;
+    height: $line-height-base;
 }
 
 #search-bar {

@@ -1,15 +1,14 @@
-import QueryString from 'qs';
-import React, { useEffect, useRef, useState } from 'react';
-import { FormControl, Button } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import QueryString from 'qs';
 import logo from '../../assets/images/logo.jpg';
 import SearchService from '../../services/SearchService';
 import OrderDropdown from '../components/OrderDropdown';
 import ResultsTable from '../components/ResultsTable';
+import ValidatedSearchForm from '../components/ValidatedSearchForm';
 
 function ResultsPage({ location }) {
 	const history = useHistory();
-	const queryInputRef = useRef();
 	const [resultsInfo, setResultsInfo] = useState({
 		query: '',
 		orderConfig: {
@@ -21,8 +20,7 @@ function ResultsPage({ location }) {
 		totalPage: 0,
 	});
 
-	const getSearchResults = (pageNo) => {
-		const searchQuery = queryInputRef.current.value;
+	const getSearchResults = (pageNo, searchQuery = resultsInfo.query) => {
 		history.push(`/results?query=${searchQuery}&page=${pageNo}`);
 	};
 
@@ -54,20 +52,12 @@ function ResultsPage({ location }) {
 		<div className="d-flex flex-column mt-4 ms-5">
 			<div className="d-flex align-items-center w-75">
 				<img width="149px" height="63px" src={logo} alt="Logo" />
-				<FormControl
-					placeholder="Enter to search"
-					defaultValue={resultsInfo.query}
+				<ValidatedSearchForm
 					id="search-bar"
-					className="d-flex w-100"
-					ref={queryInputRef}
+					defaultValue={resultsInfo.query}
+					rules={{ required: { value: true } }}
+					onSubmit={({ searchQuery }) => getSearchResults(resultsInfo.currentPage, searchQuery)}
 				/>
-				<Button
-					variant="primary"
-					disabled={resultsInfo.query.trim().length === 0}
-					onClick={() => getSearchResults(resultsInfo.currentPage)}
-				>
-					Search
-				</Button>
 			</div>
 
 			{resultsInfo.results && (
