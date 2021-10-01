@@ -54,7 +54,6 @@ export default class SearchService {
 			direction: 'asc',
 		}
 	) {
-		console.log(searchQuery, pageNo, sortConfig);
 		const parsedPageNo = parseInt(pageNo, 10);
 		const filteredData = this.sortData(this.filterData(searchQuery), sortConfig);
 
@@ -65,17 +64,6 @@ export default class SearchService {
 		let pageEnd;
 		if (pageStart + RESULT_PER_PAGE >= filteredData.length) pageEnd = filteredData.length;
 		else pageEnd = pageStart + RESULT_PER_PAGE;
-
-		console.log(
-			'Total data:',
-			filteredData.length,
-			'Page start:',
-			pageStart,
-			'Page end:',
-			pageEnd,
-			'Total page:',
-			totalPage
-		);
 
 		return {
 			dataQuery: searchQuery,
